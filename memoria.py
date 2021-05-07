@@ -12,6 +12,7 @@ state = {'mark': None}
 hide = [True] * 64
 taps = 0
 
+
 def square(x, y):
     """
     Draw white square with black outline at (x, y).
@@ -58,6 +59,10 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
+    if (True not in hide):
+        print("creo que ya ganaste")
+
 
 def draw():
     """
