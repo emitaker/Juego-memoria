@@ -1,3 +1,7 @@
+#Codigo modicado por:
+#Autor: Emilio Campuzano Mejia
+#Autora: Lorena Palomino Castillo
+
 from random import *
 from turtle import *
 from freegames import path
@@ -7,8 +11,11 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
+
 def square(x, y):
-    "Draw white square with black outline at (x, y)."
+    """
+    Draw white square with black outline at (x, y).
+    """
     up()
     goto(x, y)
     down()
@@ -19,28 +26,44 @@ def square(x, y):
         left(90)
     end_fill()
 
+
 def index(x, y):
-    "Convert (x, y) coordinates to tiles index."
+    """
+    Convert (x, y) coordinates to tiles index.
+    """
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
 
+
 def xy(count):
-    "Convert tiles count to (x, y) coordinates."
+    """
+    Convert tiles count to (x, y) coordinates.
+    """
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+
 def tap(x, y):
-    "Update mark and hidden tiles based on tap."
+    """
+    Update mark and hidden tiles based on tap.
+    """
     spot = index(x, y)
     mark = state['mark']
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
+
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
 
+    if (True not in hide):
+        print("creo que ya ganaste")
+
+
 def draw():
-    "Draw image and tiles."
+    """
+    Draw image and tiles.
+    """
     clear()
     goto(0, 0)
     shape(car)
@@ -59,9 +82,9 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
-
     update()
     ontimer(draw, 100)
+
 
 shuffle(tiles)
 setup(420, 420, 370, 0)
