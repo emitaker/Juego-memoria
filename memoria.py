@@ -61,7 +61,7 @@ def tap(x, y):
         state['mark'] = None
 
     if (True not in hide):
-        print("creo que ya ganaste")
+        print("Ya ganaste!")
 
 
 def draw():
